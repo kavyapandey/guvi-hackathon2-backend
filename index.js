@@ -101,23 +101,19 @@ app.post("/signin",async function(req,res){
                 message :("Logged in as",user.username)
             })
         }else{
-            res.status(404).json({
+            return res.json({
                 message : "Password Incorrect"
             })
         }
         }else{
-            res.status(404).json({
+           return res.status(404).json({
                 message : "User Not found ! Please register"
             })
         }
        await client.close();
-    res.json({
-        message:"user registered"
-        
-    })
     } catch (error) {
         console.error();
-        res.status(500).json({
+        return res.status(500).json({
             message : "something went wrong"
         })
         
