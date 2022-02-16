@@ -4,6 +4,7 @@ const cors = require ('cors');
 const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 const bcryptjs =require("bcryptjs");
+const { json } = require("express");
 //const url = "mongodb://localhost:27017";
 const url = "mongodb+srv://kavya:admin123@cluster0.6imyk.mongodb.net?retryWrites=true&w=majority";
  
@@ -98,6 +99,7 @@ app.post("/signin",async function(req,res){
         let matchPassword = bcryptjs.compareSync(req.body.password,user.password)
         if(matchPassword){
             res.json({
+                userData : user,
                 message :("Logged in as",user.username)
             })
         }else{
